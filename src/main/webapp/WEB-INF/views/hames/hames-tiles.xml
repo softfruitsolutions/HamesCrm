@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+	<definition name="login" template="/WEB-INF/views/hames/system/auth/login.jsp" />
+	<definition name="error.403" extends="base.definition">
+		<put-attribute name="title" value="Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/system/error/error403.jsp" />
+	</definition>
+	 
+	<definition name="dashboard" extends="base.definition">  
+        <put-attribute name="title" value="Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/dashboard.jsp" />  
+    </definition>  
+    
+    <definition name="leads.list" extends="base.definition">
+ 		<put-attribute name="title" value="Leads | HamesCrm - Softfruit" />
+ 		<put-attribute name="body" value="/WEB-INF/views/hames/leads/leadsList.jsp" />
+ 	</definition>
+ 	<definition name="leads.view" extends="base.definition">
+ 		<put-attribute name="title" value="Leads |HamesCrm - Softfruit" />
+ 		<put-attribute name="body" value="/WEB-INF/views/hames/leads/createLeads.jsp" />
+ 	</definition>
+    
+    <definition name="project.list" extends="base.definition">
+    	<put-attribute name="title" value="Project Details|HamesCrm - Softfruit " />
+    	<put-attribute name="body" value="/WEB-INF/views/hames/projectDetails/projectDetailsList.jsp"></put-attribute>
+    </definition>
+    <definition name="project.view" extends="base.definition">
+    	<put-attribute name="title" value="Project Details|HamesCrm - Softfruit" />
+    	<put-attribute name="body" value="/WEB-INF/views/hames/projectDetails/projectDetails.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="potential.list" extends="base.definition">
+ 		<put-attribute name="title" value="Potential | HamesCrm - Softfruit" />
+ 		<put-attribute name="body" value="/WEB-INF/views/hames/potential/potentialList.jsp" />
+ 	</definition>
+ 	<definition name="potential.view" extends="base.definition">
+ 		<put-attribute name="title" value="Potential | HamesCrm - Softfruit" />
+ 		<put-attribute name="body"  value="/WEB-INF/views/hames/potential/createPotential.jsp" />
+ 	</definition>
+ 	
+ 	<definition name="task.list" extends="base.definition">
+ 		<put-attribute name="title" value="Task | HamesCrm - Softfruit"></put-attribute>
+ 		<put-attribute name="body" value="/WEB-INF/views/hames/tasks/listTask.jsp"></put-attribute>
+ 	</definition>
+    <definition name="task.view" extends="base.definition">
+    	<put-attribute name="title" value="Task | HamesCrm - Softfruit"></put-attribute>
+    	<put-attribute name="body"  value="/WEB-INF/views/hames/tasks/taskCreation.jsp"></put-attribute>
+    </definition>
+    <definition name="task.lead.view" extends="base.definition">
+    	<put-attribute name="title" value="Task | HamesCrm - Softfruit"></put-attribute>
+    	<put-attribute name="body" value="/WEB-INF/views/hames/tasks/taskCreationLead.jsp"></put-attribute>
+    </definition>
+    <definition name="task.potential.view" extends="base.definition">
+    	<put-attribute name="title" value="Task | HamesCrm - Softfruit"></put-attribute> 
+    	<put-attribute name="body" value="/WEB-INF/views/hames/tasks/taskCreationPotential.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="system.auth.useraccount" extends="base.definition">  
+        <put-attribute name="title" value="User Account | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/system/auth/userAccount.jsp" />  
+    </definition>
+    <definition name="system.role" extends="base.definition">  
+        <put-attribute name="title" value="Role | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/system/rolePermission.jsp" />  
+    </definition>
+    
+	<definition name="staff.view" extends="base.definition">  
+        <put-attribute name="title" value="Staff | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/staff/staff.jsp" />  
+    </definition>
+    <definition name="staff.list" extends="base.definition">  
+        <put-attribute name="title" value="Staff | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/staff/staffList.jsp" />  
+    </definition>
+    
+    <definition name="customer" extends="base.definition">  
+        <put-attribute name="title" value="Customer | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/party/customer.jsp" />  
+    </definition>  
+    <definition name="customer.list" extends="base.definition">  
+        <put-attribute name="title" value="Customer | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/party/customerList.jsp" />  
+    </definition>  
+ 	
+ 	<definition name="potential.list" extends="base.definition">
+ 		<put-attribute name="title" value="Potential | HamesCrm - Softfruit" />
+ 		<put-attribute name="body" value="/WEB-INF/views/hames/potential/potentialList.jsp" />
+ 	</definition>
+ 	<definition name="potential.view" extends="base.definition">
+ 		<put-attribute name="title" value="Potential | HamesCrm - Softfruit" />
+ 		<put-attribute name="body"  value="/WEB-INF/views/hames/potential/createPotential.jsp" />
+ 	</definition>
+ 	
+
+ 	<definition name="sale.order.list" extends="base.definition">  
+        <put-attribute name="title" value="Sale Order | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/order/saleOrderList.jsp" />  
+    </definition>
+ 	<definition name="sale.order" extends="base.definition">  
+        <put-attribute name="title" value="Sale Order | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/order/saleOrder.jsp" />
+    </definition>
+    <definition name="sale.order.service" extends="base.definition">  
+        <put-attribute name="title" value="Sale Order | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/order/saleOrderService.jsp" />  
+    </definition>
+
+    <definition name="expense.manager.list" extends="base.definition">  
+        <put-attribute name="title" value="Expense Manager | Hames - Softfruit" />  
+   		<put-attribute name="body" value="/WEB-INF/views/hames/expense/expenseManagerList.jsp" />
+    </definition>    
+    <definition name="expense.manager.view" extends="base.definition">  
+        <put-attribute name="title" value="Expense Manager | Hames - Softfruit" />  
+   		<put-attribute name="body" value="/WEB-INF/views/hames/expense/expenseManager.jsp" /> 
+    </definition>
+    <definition name="expense.category.view" extends="base.definition">  
+        <put-attribute name="title" value="Expense Category | Hames - Softfruit" />  
+        <put-attribute name="body" value="/WEB-INF/views/hames/expense/expenseCategory.jsp" />  
+    </definition>
+</tiles-definitions>  

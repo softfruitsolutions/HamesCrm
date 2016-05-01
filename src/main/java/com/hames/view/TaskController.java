@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hames.bean.Task;
+import com.hames.bean.UserContext;
+import com.hames.bean.criteria.TaskCriteria;
 import com.hames.enums.TaskStatus;
 import com.hames.service.LeadService;
 import com.hames.service.PotentialService;
+import com.hames.service.StaffService;
 import com.hames.service.TaskService;
 import com.hames.util.enums.SuccessCode;
 import com.hames.util.model.DatatableRequest;
@@ -25,6 +28,8 @@ import com.hames.util.model.SuccessNode;
 @RequestMapping("/task")
 public class TaskController extends GenericView{
 	
+	@Autowired
+	private StaffService staffService;
 	@Autowired
 	private LeadService leadService;
 	@Autowired
@@ -67,6 +72,7 @@ public class TaskController extends GenericView{
 		model.addAttribute("leads", leadService.getAllLeads());
 		model.addAttribute("potential", potentialService.getAllPotential());
 		model.addAttribute("status", TaskStatus.values());
+		model.addAttribute("staffs", staffService.getAllActiveStaffs());
 		return "task.lead.view";
 	}
 	
@@ -93,6 +99,7 @@ public class TaskController extends GenericView{
 		}
 		model.addAttribute("leads", leadService.getAllLeads());
 		model.addAttribute("potential", potentialService.getAllPotential());
+		model.addAttribute("staffs", staffService.getAllActiveStaffs());
 		model.addAttribute("status", TaskStatus.values());
 		
 		return "task.potential.view";
@@ -142,7 +149,9 @@ public class TaskController extends GenericView{
 	 */
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDatatable(@ModelAttribute DatatableRequest datatableRequest){
+		TaskCriteria taskCriteria = new TaskCriteria();
+		taskCriteria.setTaskOwner(UserContext.staff.getStaffId());
+		datatableRequest.setCriteria(taskCriteria);
 		return taskService.getDatatable(datatableRequest);
-		
 	}
 }

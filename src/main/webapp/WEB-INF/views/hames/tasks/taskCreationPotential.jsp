@@ -86,7 +86,9 @@
 										<form:label path="taskOwner" cssClass="control-lead">Task Owner</form:label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-user fa-lg"></i></span>
-											<form:input path="taskOwner" cssClass="form-control" placeholder="Task Owner"/>
+											<form:select path="taskOwner" class="form-control">
+												<form:options items="${staffs }" itemLabel="fullName" itemValue="staffId"/>
+											</form:select>
 										</div>
 									</div>
 								</div>

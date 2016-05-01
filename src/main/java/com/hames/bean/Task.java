@@ -2,6 +2,7 @@ package com.hames.bean;
 
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 public class Task extends Audit {
 	
@@ -11,6 +12,7 @@ public class Task extends Audit {
 	String leadId;
 	String PotId;
 	String taskOwner;
+	
 	String subject;
 	String eventName;
 	DateTime currentDate;
@@ -19,6 +21,9 @@ public class Task extends Audit {
 	String leadName;
 	String potentialName;
 	String remark;
+	
+	@Transient
+	private String taskOwnerText;
 	
 	
 	public String getLeadId() {
@@ -94,7 +99,12 @@ public class Task extends Audit {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	public String getTaskOwnerText() {
+		return taskOwnerText;
+	}
+	public void setTaskOwnerText(String taskOwnerText) {
+		this.taskOwnerText = taskOwnerText;
+	}
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", leadId=" + leadId + ", PotId="

@@ -66,7 +66,6 @@ $(function() {
 				aoData.push({ "name" : "sortField","value":"potentialName"});
 			},
 				"aoColumns": [
-				              	{ mDataProp: 'taskOwner'},
 				              	{ mDataProp: 'subject'},
 				              	{ "mData": 'taskDate',
 				              		"bSortable":false,
@@ -151,7 +150,6 @@ $(function() {
 			<table class="table table-striped table-hover table-condensed dataTable" id="taskListPotential">
 				<thead>
 					<tr>
-						<th>Task Owner</th>
 						<th>Subject</th>
 						<th>Date</th>
 						<th>Status</th>

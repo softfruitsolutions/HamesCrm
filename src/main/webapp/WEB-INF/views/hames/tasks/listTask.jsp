@@ -21,7 +21,7 @@ $(function() {
 			aoData.push({"name": "leadName", "value": "leadName"});
 		},
 			"aoColumns": [
-			              	{ mDataProp: 'taskOwner'},
+			              	{ mDataProp: 'taskOwnerText'},
 			              	{ mDataProp: 'subject'},
 			              	{ "mData": 'taskDate',
 			              		"bSortable":false,
@@ -60,7 +60,7 @@ $(function() {
 			aoData.push({ "name" : "sortField","value":"potentialName"});
 		},
 			"aoColumns": [
-			              	{ mDataProp: 'taskOwner'},
+			              	{ mDataProp: 'taskOwnerText'},
 			              	{ mDataProp: 'subject'},
 			              	{ "mData": 'taskDate',
 			              		"bSortable":false,

@@ -38,7 +38,12 @@ $(function() {
 			"aoColumns": [
 			              	{mDataProp : 'potentialName'},
 			              	{ mDataProp: 'projectName'},
-			                {mDataProp : 'engineer'},
+			              	{ "mData": 'date',
+			              		"bSortable":false,
+			              		"mRender":function(data,type,full){
+			              			return DateUtil.getDate(data);
+			              		},
+			              	},
 			              	{ mDataProp: 'status'},
 			             
 			              ],
@@ -125,7 +130,7 @@ $(function() {
 					<tr>
 						<th>Potential Name</th>
 						<th>Project Name</th>
-						<td>Handled By</td>
+						<th>Delivery Date</th>
 						<th>Status</th>
 					</tr>
 				</thead> 

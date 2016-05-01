@@ -8,7 +8,7 @@
 	</bean>
 	
 	<bean id="mongoUri" class="com.mongodb.MongoURI">
-		  <constructor-arg value="mongodb://localhost:27017/hames"/>
+		  <constructor-arg value="mongodb://localhost:27017/hamescrm"/>
 	</bean>
 
 	<bean class="com.mongodb.Mongo" id="mongo">
@@ -17,8 +17,8 @@
  
 	<bean id="hamesDataStore" class="com.hames.db.HamesDataStore">
 		<constructor-arg name="mongo" ref="mongo" />
-		<constructor-arg name="databaseName" value="hames" />
-		<constructor-arg name="userCredentials" ref="userCredentials" />
+		<constructor-arg name="databaseName" value="hamescrm" />
+		<!-- <constructor-arg name="userCredentials" ref="userCredentials" /> -->
 	</bean>
 	
 	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->

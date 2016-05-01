@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hames.bean.ProjectDetails;
+import com.hames.bean.UserContext;
+import com.hames.bean.criteria.ProjectDetailsCriteria;
 import com.hames.enums.ProjectDetailsStatus;
 import com.hames.service.PotentialService;
 import com.hames.service.ProjectDetailsService;
+import com.hames.service.StaffService;
 import com.hames.service.impl.PotentialServiceImpl;
 import com.hames.util.enums.EngineersName;
 import com.hames.util.enums.SuccessCode;
@@ -33,7 +36,8 @@ public class ProjectDetailsViewController extends GenericView{
 	
 	@Autowired
 	public ProjectDetailsService projectDetailsService;
-	
+	@Autowired
+	public StaffService staffService;
 	@Autowired
 	public PotentialService potentialService;
 	
@@ -58,7 +62,9 @@ public class ProjectDetailsViewController extends GenericView{
 		}
 		model.addAttribute("potentialName", potentialService.getAllPotential());
 		model.addAttribute("status", ProjectDetailsStatus.values());
+		model.addAttribute("staffs", staffService.getAllActiveStaffs());
 		model.addAttribute("engineer", EngineersName.values());
+		
 		return "project.view";
 	}
 	
@@ -76,6 +82,13 @@ public class ProjectDetailsViewController extends GenericView{
 	
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDataTable(@ModelAttribute DatatableRequest datatableRequest){
+		/**
+		 * Setting Project details criteria
+		 */
+		ProjectDetailsCriteria criteria = new ProjectDetailsCriteria();
+		criteria.setEngineer(UserContext.staff.getStaffId());
+		datatableRequest.setCriteria(criteria);
+		
 		return projectDetailsService.getDatatable(datatableRequest);
 	}
 }

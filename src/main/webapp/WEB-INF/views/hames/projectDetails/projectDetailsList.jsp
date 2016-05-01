@@ -21,7 +21,6 @@
 				"aoColumns":[
 				             {mDataProp : 'potentialName'},
 				             {mDataProp : 'projectName'},
-				             {mDataProp : 'engineer'},
 				             {mDataProp : 'status'},
 				             
 				             {mDataProp : 'advanceAmount'},
@@ -72,7 +71,6 @@
 						<tr>
 							<td>Potential Name </td>
 							<td>Project Name </td>
-							<td>Handled By</td>
 							<td>Status</td>
 							<td>Advance Amount</td>
 							<td>Floor Level</td>

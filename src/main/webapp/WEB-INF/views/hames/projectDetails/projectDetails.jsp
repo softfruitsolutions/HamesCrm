@@ -86,7 +86,7 @@ function save(){
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-cog"></i></span>
 											<form:select path="engineer" class="form-control">
-												<form:options items="${engineer }" itemLabel="text"/>
+												<form:options items="${staffs }" itemLabel="fullName" itemValue="staffId"/>
 											</form:select>
 										</div>
 									</div>

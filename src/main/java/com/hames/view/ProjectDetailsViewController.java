@@ -82,6 +82,11 @@ public class ProjectDetailsViewController extends GenericView{
 	
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDataTable(@ModelAttribute DatatableRequest datatableRequest){
+		return projectDetailsService.getDatatable(datatableRequest);
+	}
+	
+	@RequestMapping("/dashboardDatatable")
+	public @ResponseBody DatatableResponse viewDashboardDataTable(@ModelAttribute DatatableRequest datatableRequest){
 		/**
 		 * Setting Project details criteria
 		 */

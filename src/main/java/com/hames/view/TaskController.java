@@ -149,9 +149,20 @@ public class TaskController extends GenericView{
 	 */
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDatatable(@ModelAttribute DatatableRequest datatableRequest){
+		return taskService.getDatatable(datatableRequest);
+	}
+	
+	/**
+	 * Creating datatable
+	 * @param datatableRequest
+	 * @return
+	 */
+	@RequestMapping("/dashboardDatatable")
+	public @ResponseBody DatatableResponse viewDashboardDatatable(@ModelAttribute DatatableRequest datatableRequest){
 		TaskCriteria taskCriteria = new TaskCriteria();
 		taskCriteria.setTaskOwner(UserContext.staff.getStaffId());
 		datatableRequest.setCriteria(taskCriteria);
 		return taskService.getDatatable(datatableRequest);
 	}
+	
 }

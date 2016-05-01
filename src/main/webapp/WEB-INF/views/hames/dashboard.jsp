@@ -31,7 +31,7 @@ $(function() {
 		"bProcessing" : true,
 		"bServerSide" : true,
 		"bPaginate"	  : false,
-		"sAjaxSource" :	'project/datatable',
+		"sAjaxSource" :	'project/dashboardDatatable',
 		"fnServerParams" : function( aoData ) {
 			aoData.push({ "name" : "sortField","value":"projectId"});
 		},
@@ -61,7 +61,7 @@ $(function() {
 			"bProcessing" : true,
 			"bServerSide" : true,
 			"bPaginate"	  : false,
-			"sAjaxSource" :	'task/datatable',
+			"sAjaxSource" :	'task/dashboardDatatable',
 			"fnServerParams" : function( aoData ) {
 				aoData.push({ "name" : "sortField","value":"potentialName"});
 			},

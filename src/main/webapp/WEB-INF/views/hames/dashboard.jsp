@@ -24,26 +24,21 @@ $(function(){
 });
 
 /**
- * Table for project
+ * Table for project structural
  */
 $(function() {
 	$('#projectReviewTable').dataTable({
 		"bProcessing" : true,
 		"bServerSide" : true,
 		"bPaginate"	  : false,
-		"sAjaxSource" :	'project/dashboardDatatable',
+		"sAjaxSource" :	'project/datatable',
 		"fnServerParams" : function( aoData ) {
 			aoData.push({ "name" : "sortField","value":"projectId"});
 		},
 			"aoColumns": [
 			              	{mDataProp : 'potentialName'},
 			              	{ mDataProp: 'projectName'},
-			              	{ "mData": 'date',
-			              		"bSortable":false,
-			              		"mRender":function(data,type,full){
-			              			return DateUtil.getDate(data);
-			              		},
-			              	},
+			                {mDataProp : 'engineer'},
 			              	{ mDataProp: 'status'},
 			             
 			              ],
@@ -54,6 +49,32 @@ $(function() {
 });
 
 /**
+ * Table for project Interior
+ */
+$(function() {
+	$('#interiorProjectTable').dataTable({
+		"bProcessing" : true,
+		"bServerSide" : true,
+		"bPaginate"	  : false,
+		"sAjaxSource" :	'project/interiorDatatable',
+		"fnServerParams" : function( aoData ) {
+			aoData.push({ "name" : "sortField","value":"projectId"});
+		},
+			"aoColumns": [
+			              	{mDataProp : 'potentialName'},
+			              	{ mDataProp: 'projectName'},
+			                {mDataProp : 'engineer'},
+			              	{ mDataProp: 'status'},
+			             
+			              ],
+			"bFilter":false,
+			"aLengthMenu":[[10,25,30,-1],[10,25,30,50]],
+			"iDisplayLength":10
+	});
+});
+
+
+/**
  * Table for task potential
  */
  $(function() {
@@ -61,11 +82,13 @@ $(function() {
 			"bProcessing" : true,
 			"bServerSide" : true,
 			"bPaginate"	  : false,
-			"sAjaxSource" :	'task/dashboardDatatable',
+			"sAjaxSource" :	'task/datatable',
 			"fnServerParams" : function( aoData ) {
 				aoData.push({ "name" : "sortField","value":"potentialName"});
 			},
 				"aoColumns": [
+								{ mDataProp: 'customerName'},
+								{ mDataProp: 'engineer'},
 				              	{ mDataProp: 'subject'},
 				              	{ "mData": 'taskDate',
 				              		"bSortable":false,
@@ -93,7 +116,7 @@ $(function() {
 			    <h2 class="mt20 lh20" id="userCount">
 			      <b><c:out value="${leadCount}" /></b>
 			    </h2>
-			    <h5 class="text-muted">LEADS</h5>
+			    <h5 class="text-muted">Leads</h5>
 			  </div>
 			</div>
 		</div>	
@@ -104,9 +127,9 @@ $(function() {
 				<div class="panel-body pl20 p5">
 					<i class="icon-users icon-bg"></i>
 					<h2 class="mt20 lh20" id="userCountPotential">
-						<b><c:out value="${potentialCount }" /></b>
+						<b><c:out value="${clientCount }" /></b>
 					</h2>
-					<h5 class="text-muted">CLIENTS</h5>
+					<h5 class="text-muted">Customers</h5>
 				</div>
 			</div>
 		</div>
@@ -118,7 +141,7 @@ $(function() {
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<i class="glyphicon glyphicon-wrench"></i>
-				Project Progress
+				Structural Project 
 				<span class="badge badge-info">	
 					${projectDeatailsCount}
 				</span>
@@ -129,7 +152,7 @@ $(function() {
 					<tr>
 						<th>Potential Name</th>
 						<th>Project Name</th>
-						<th>Delivery Date</th>
+						<td>Handled By</td>
 						<th>Status</th>
 					</tr>
 				</thead> 
@@ -141,17 +164,19 @@ $(function() {
 	<div class="col-sm-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<i class="glyphicon glyphicon-th"></i>
-				TASK REMINDER CLIENT
+				<i class="glyphicon glyphicon-wrench"></i>
+				Interior Project
 				<span class="badge badge-info">	
+					${interiorProject}
 				</span>
 			</div>
 		<div class="panel-body">
-			<table class="table table-striped table-hover table-condensed dataTable" id="taskListPotential">
+			<table class="table table-striped table-hover table-condensed dataTable" id="interiorProjectTable">
 				<thead>
 					<tr>
-						<th>Subject</th>
-						<th>Date</th>
+						<th>Potential Name</th>
+						<th>Project Name</th>
+						<td>Handled By</td>
 						<th>Status</th>
 					</tr>
 				</thead> 
@@ -161,3 +186,30 @@ $(function() {
 	</div>
 	
  </div> 
+ 
+<div class="row">
+	<div class="col-sm-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<i class="glyphicon glyphicon-th"></i>
+				TASKS
+				<span class="badge badge-info">	
+					${taskCount}
+				</span>
+			</div>
+		<div class="panel-body">
+			<table class="table table-striped table-hover table-condensed dataTable" id="taskListPotential">
+				<thead>
+					<tr>
+						<th>Customer</th>
+						<th>Engineer</th>
+						<th>Subject</th>
+						<th>Date</th>
+						<th>Status</th>
+					</tr>
+				</thead> 
+			</table>
+			</div>
+		</div>
+	</div>
+</div>

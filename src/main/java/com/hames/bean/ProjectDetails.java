@@ -19,7 +19,6 @@ public class ProjectDetails extends Audit{
 	private String floorLevel;
 	private String mainConcrete;
 	private String plastering;
-	private String interior;
 	private String engineer;
 	
 	public String getEngineer() {
@@ -60,14 +59,6 @@ public class ProjectDetails extends Audit{
 
 	public void setPlastering(String plastering) {
 		this.plastering = plastering;
-	}
-
-	public String getInterior() {
-		return interior;
-	}
-
-	public void setInterior(String interior) {
-		this.interior = interior;
 	}
 
 	public String getRemark() {
@@ -142,8 +133,7 @@ public class ProjectDetails extends Audit{
 				+ reminder + ", status=" + status + ", remark=" + remark
 				+ ", advanceAmount=" + advanceAmount + ", floorLevel="
 				+ floorLevel + ", mainConcrete=" + mainConcrete
-				+ ", plastering=" + plastering + ", interior=" + interior
-				+ ", engineer=" + engineer + "]";
+				+ ", plastering=" + plastering + ", engineer=" + engineer + "]";
 	}
 	
 	

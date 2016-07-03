@@ -1,5 +1,6 @@
 package com.hames.view;
 
+
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hames.bean.Task;
-import com.hames.bean.UserContext;
-import com.hames.bean.criteria.TaskCriteria;
 import com.hames.enums.TaskStatus;
+import com.hames.service.ClientService;
 import com.hames.service.LeadService;
-import com.hames.service.PotentialService;
-import com.hames.service.StaffService;
 import com.hames.service.TaskService;
 import com.hames.util.enums.SuccessCode;
 import com.hames.util.model.DatatableRequest;
@@ -29,13 +27,11 @@ import com.hames.util.model.SuccessNode;
 public class TaskController extends GenericView{
 	
 	@Autowired
-	private StaffService staffService;
-	@Autowired
 	private LeadService leadService;
 	@Autowired
 	private TaskService taskService;
 	@Autowired
-	private PotentialService potentialService;
+	private ClientService clientService;
 	
 	/**
 	 * Listing values form database
@@ -54,7 +50,7 @@ public class TaskController extends GenericView{
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/leadTask",method=RequestMethod.GET)
+	@RequestMapping(value="/view",method=RequestMethod.GET)
 	public String viewTaskCreationLead(Model model,@RequestParam(value="id",required=false)String id){
 		
 		Task task = null;
@@ -70,60 +66,11 @@ public class TaskController extends GenericView{
 			model.addAttribute("task", task);
 		}
 		model.addAttribute("leads", leadService.getAllLeads());
-		model.addAttribute("potential", potentialService.getAllPotential());
 		model.addAttribute("status", TaskStatus.values());
-		model.addAttribute("staffs", staffService.getAllActiveStaffs());
-		return "task.lead.view";
+		model.addAttribute("clientName", clientService.getAllClient());
+		return "task.view";
 	}
-	
-	/**
-	 * Viewing page for potential to create task
-	 * @param model
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping(value="/potTask",method=RequestMethod.GET)
-	public String viewTaskCreationPotential(Model model,@RequestParam(value="id",required=false)String id){
-		
-		Task task = null;
-		if(id==null || id.isEmpty()){
-			if(!model.containsAttribute("task")){
-				task = new Task();
-				model.addAttribute("task", task);
-				task.setCurrentDate(new DateTime());
-				task.setPotId(taskService.getNextPotId());
-			}
-		} else {
-			task = taskService.getTaskById(id);
-			model.addAttribute("task", task);
-		}
-		model.addAttribute("leads", leadService.getAllLeads());
-		model.addAttribute("potential", potentialService.getAllPotential());
-		model.addAttribute("staffs", staffService.getAllActiveStaffs());
-		model.addAttribute("status", TaskStatus.values());
-		
-		return "task.potential.view";
-	}
-	
-	@RequestMapping(value="/view",method=RequestMethod.GET)
-	public String viewTaskForm(Model model,@RequestParam(value="id",required=false)String id){
-		
-			model.addAttribute("menu","createTask");
-			
-			Task task = null;
-			if(id==null || id.isEmpty()){
-				if(!model.containsAttribute("task")){
-					task = new Task();
-					model.addAttribute("task", task);
-					task.setCurrentDate(new DateTime());
-				}
-			} else {
-				model.addAttribute("task", task);
-			}
-			model.addAttribute("leads", leadService.getAllLeads());
-			model.addAttribute("potential", potentialService.getAllPotential());
-		return "task.view";	
-	}
+
 	
 	/**
 	 * Saving values in DB
@@ -150,19 +97,6 @@ public class TaskController extends GenericView{
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDatatable(@ModelAttribute DatatableRequest datatableRequest){
 		return taskService.getDatatable(datatableRequest);
+		
 	}
-	
-	/**
-	 * Creating datatable
-	 * @param datatableRequest
-	 * @return
-	 */
-	@RequestMapping("/dashboardDatatable")
-	public @ResponseBody DatatableResponse viewDashboardDatatable(@ModelAttribute DatatableRequest datatableRequest){
-		TaskCriteria taskCriteria = new TaskCriteria();
-		taskCriteria.setTaskOwner(UserContext.staff.getStaffId());
-		datatableRequest.setCriteria(taskCriteria);
-		return taskService.getDatatable(datatableRequest);
-	}
-	
 }

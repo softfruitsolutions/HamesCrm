@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hames.bean.InteriorProject;
 import com.hames.bean.ProjectDetails;
-import com.hames.bean.UserContext;
-import com.hames.bean.criteria.ProjectDetailsCriteria;
 import com.hames.enums.ProjectDetailsStatus;
-import com.hames.service.PotentialService;
+import com.hames.service.ClientService;
+import com.hames.service.InteriorProjectService;
 import com.hames.service.ProjectDetailsService;
-import com.hames.service.StaffService;
-import com.hames.service.impl.PotentialServiceImpl;
 import com.hames.util.enums.EngineersName;
 import com.hames.util.enums.SuccessCode;
 import com.hames.util.model.DatatableRequest;
@@ -34,19 +32,40 @@ public class ProjectDetailsViewController extends GenericView{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProjectDetailsViewController.class);
 	
-	@Autowired
-	public ProjectDetailsService projectDetailsService;
-	@Autowired
-	public StaffService staffService;
-	@Autowired
-	public PotentialService potentialService;
+	@Autowired public ProjectDetailsService projectDetailsService;
+	@Autowired public InteriorProjectService interiorProjectService;
+	@Autowired private ClientService clientService;
 	
+	/**
+	 * Listing values of structural project
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/list")
 	public String listProjectDetails(Model model){
 		
 		return "project.list";
 	}
 	
+	
+	/**
+	 * Listing values of interior project
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/interiorListing")
+	public String listIteriorProject(Model model){
+		
+		return "project.listingInterior";
+	}
+	
+	
+	/**
+	 * Viewing the form to add structural project
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/view")
 	public String viewProjectDetailsForm(Model model,@RequestParam(value="id",required=false)String id){
 		
@@ -60,14 +79,43 @@ public class ProjectDetailsViewController extends GenericView{
 			projectDetails = projectDetailsService.getProjectId(id);
 			model.addAttribute("projectDetails", projectDetails);
 		}
-		model.addAttribute("potentialName", potentialService.getAllPotential());
+		model.addAttribute("clientName", clientService.getAllClient());
 		model.addAttribute("status", ProjectDetailsStatus.values());
-		model.addAttribute("staffs", staffService.getAllActiveStaffs());
 		model.addAttribute("engineer", EngineersName.values());
-		
 		return "project.view";
 	}
 	
+	/**
+	 * Viewing the form to add interior project
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/interior")
+	public String viewInteriorProjectForm(Model model,@RequestParam(value="id",required=false)String id){
+		
+		InteriorProject interiorProject = null;
+		if(id == null || id.isEmpty()){
+			if(!model.containsAttribute("interiorProject"));
+			interiorProject = new InteriorProject();
+			model.addAttribute("interiorProject",interiorProject);
+			interiorProject.setDate(new DateTime());
+		}else{
+			interiorProject = interiorProjectService.getProjectId(id);
+			model.addAttribute("interiorProject",interiorProject);
+		}
+		model.addAttribute("clientName", clientService.getAllClient());
+		model.addAttribute("status",ProjectDetailsStatus.values());
+		model.addAttribute("engineer",EngineersName.values());
+		return "project.interior";
+	}
+	
+	/**
+	 * Saving values of structural project
+	 * @param model
+	 * @param projectDetails
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public JsonResponse save(Model model,@ModelAttribute ProjectDetails projectDetails){
@@ -80,20 +128,35 @@ public class ProjectDetailsViewController extends GenericView{
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/saveInterior",method=RequestMethod.POST)
+	public JsonResponse saveInterior(Model model,@ModelAttribute InteriorProject interiorProject){
+		
+		JsonResponse response ;
+		interiorProjectService.saveProjectDetails(interiorProject);
+		response = new JsonResponse(Boolean.TRUE, new SuccessNode(SuccessCode.ENTITY_SAVED,"Interior Project Details Saved Successfully"));
+		
+		return response;
+	}
+	
+	/**
+	 * listing the values in the table
+	 * @param datatableRequest
+	 * @return
+	 */
 	@RequestMapping("/datatable")
 	public @ResponseBody DatatableResponse viewDataTable(@ModelAttribute DatatableRequest datatableRequest){
 		return projectDetailsService.getDatatable(datatableRequest);
 	}
 	
-	@RequestMapping("/dashboardDatatable")
-	public @ResponseBody DatatableResponse viewDashboardDataTable(@ModelAttribute DatatableRequest datatableRequest){
-		/**
-		 * Setting Project details criteria
-		 */
-		ProjectDetailsCriteria criteria = new ProjectDetailsCriteria();
-		criteria.setEngineer(UserContext.staff.getStaffId());
-		datatableRequest.setCriteria(criteria);
+	/**
+	 * listing the values in the table
+	 * @param datatableRequest
+	 * @return
+	 */
+	@RequestMapping("/interiorDatatable")
+	public @ResponseBody DatatableResponse interiorDatatable(@ModelAttribute DatatableRequest datatableRequest){
 		
-		return projectDetailsService.getDatatable(datatableRequest);
+		return interiorProjectService.getDatatable(datatableRequest);
 	}
 }

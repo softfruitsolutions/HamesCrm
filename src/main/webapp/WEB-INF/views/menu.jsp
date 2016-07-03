@@ -78,15 +78,15 @@
 	   <li>
 	   	   <a class="accordion-toggle" href="#">
 	         <span class="imoon imoon-users"></span>
-	         <span class="sidebar-title">Client</span>
+	         <span class="sidebar-title">Customer</span>
 	         <span class="caret"></span>
 	       </a>
 	       <ul class="nav sub-nav">
 	       	 <shiro:hasPermission name="client:view">
              <li>
-           	   <a href="<c:url value="/potential/list" />">
+           	   <a href="<c:url value="/client/list" />">
                   <span class="imoon imoon-users2"></span>
-				 Clients List 
+				 Customer List 
                </a>
              </li>
              </shiro:hasPermission>
@@ -101,12 +101,21 @@
 	   		<span class="caret"></span>
 	   	</a>
 	   	<ul class="nav sub-nav">
-	   		<li>
-	   			<a href="<c:url value="/project/list" />">
-	   				<span class="fa fa-bars"></span>
-	   			Projects List 
-	   			</a>
-	   		</li>
+	   		<shiro:hasPermission name="project:details:view">
+		   		<li>
+		   			<a href="<c:url value="/project/list" />">
+		   				<span class="fa fa-bars"></span>
+		   					Structural 
+		   			</a>
+		   		</li>
+		   	
+		   		<li>
+		   			<a href="<c:url value="/project/interiorListing" />">
+		   				<span class="fa fa-bars"></span>
+		   					Interior
+		   			</a>
+		   		</li>	
+		   	</shiro:hasPermission>	
 	   	</ul>
 	   </li>
 	   </shiro:hasPermission>

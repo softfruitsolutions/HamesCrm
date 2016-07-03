@@ -22,5 +22,11 @@ public interface TaskDao {
 	 * Find a task
 	 */
 	Task findByTaskId(String taskId);
+	
+	/**
+	 * To find the count of the task
+	 * @return
+	 */
+	Long findTaskCount();
 }
 

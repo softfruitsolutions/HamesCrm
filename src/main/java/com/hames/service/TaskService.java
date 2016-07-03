@@ -32,4 +32,6 @@ public interface TaskService {
 	 * Next potential Id
 	 */
 	public String getNextPotId();
+	
+	public long getTaskCount();
 }

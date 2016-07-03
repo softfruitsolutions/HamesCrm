@@ -21,13 +21,13 @@
 				"aoColumns":[
 				             {mDataProp : 'potentialName'},
 				             {mDataProp : 'projectName'},
+				             {mDataProp : 'engineer'},
 				             {mDataProp : 'status'},
 				             
 				             {mDataProp : 'advanceAmount'},
 				             {mDataProp : 'floorLevel'},
 				             {mDataProp : 'mainConcrete'},
 				             {mDataProp : 'plastering'},
-				             {mDataProp : 'interior'},
 				             {
 				            	  "mData":'date',
 				            	  "bSortable":false,
@@ -61,7 +61,7 @@
 				<shiro:hasPermission name="project:create">
 				<div class="btn-group">
 				 <a class="btn btn-info" href="${prjctDtllstUrl }" title="Refresh "><i class="fa fa-refresh"></i></a>
-					<a class="btn btn-primary" href="${prjctDtlVwUrl}" title="createProjectDetails"><i class="fa fa-file-text-o"></i>New Project Details</a>
+					<a class="btn btn-primary" href="${prjctDtlVwUrl}" title="createProjectDetails"><i class="fa fa-file-text-o"></i>New Project</a>
 				</div>
 				</shiro:hasPermission>
 			</div>
@@ -71,12 +71,12 @@
 						<tr>
 							<td>Potential Name </td>
 							<td>Project Name </td>
+							<td>Handled By</td>
 							<td>Status</td>
 							<td>Advance Amount</td>
 							<td>Floor Level</td>
 							<td>Main Concrete</td>
 							<td>Plastering</td>
-							<td>Interior</td>
 							<td>Date</td>
 							<td>Action</td>
 						</tr>

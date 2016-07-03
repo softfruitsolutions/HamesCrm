@@ -4,7 +4,7 @@
 	
 	<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
 	    <constructor-arg name="username" value="admin" />
-	    <constructor-arg name="password" value="soft#123!" />
+	    <constructor-arg name="password" value="hamescrm123!" />
 	</bean>
 	
 	<bean id="mongoUri" class="com.mongodb.MongoURI">
@@ -18,7 +18,7 @@
 	<bean id="hamesDataStore" class="com.hames.db.HamesDataStore">
 		<constructor-arg name="mongo" ref="mongo" />
 		<constructor-arg name="databaseName" value="hamescrm" />
-		<!-- <constructor-arg name="userCredentials" ref="userCredentials" /> -->
+		<constructor-arg name="userCredentials" ref="userCredentials" />
 	</bean>
 	
 	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->

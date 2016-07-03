@@ -2,7 +2,6 @@ package com.hames.bean;
 
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 
 public class Task extends Audit {
 	
@@ -11,21 +10,23 @@ public class Task extends Audit {
 	
 	String leadId;
 	String PotId;
-	String taskOwner;
-	
+	String engineer;
 	String subject;
 	String eventName;
 	DateTime currentDate;
 	DateTime taskDate;
 	String status;
-	String leadName;
+	String customerName;
 	String potentialName;
 	String remark;
 	
-	@Transient
-	private String taskOwnerText;
 	
-	
+	public String getEngineer() {
+		return engineer;
+	}
+	public void setEngineer(String engineer) {
+		this.engineer = engineer;
+	}
 	public String getLeadId() {
 		return leadId;
 	}
@@ -56,12 +57,7 @@ public class Task extends Audit {
 	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
-	public String getTaskOwner() {
-		return taskOwner;
-	}
-	public void setTaskOwner(String taskOwner) {
-		this.taskOwner = taskOwner;
-	}
+	
 	public String getSubject() {
 		return subject;
 	}
@@ -81,12 +77,6 @@ public class Task extends Audit {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getLeadName() {
-		return leadName;
-	}
-	public void setLeadName(String leadName) {
-		this.leadName = leadName;
-	}
 	public String getPotentialName() {
 		return potentialName;
 	}
@@ -99,20 +89,21 @@ public class Task extends Audit {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public String getTaskOwnerText() {
-		return taskOwnerText;
-	}
-	public void setTaskOwnerText(String taskOwnerText) {
-		this.taskOwnerText = taskOwnerText;
-	}
+	
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", leadId=" + leadId + ", PotId="
-				+ PotId + ", taskOwner=" + taskOwner + ", subject=" + subject
+				+ PotId + ", engineer=" + engineer + ", subject=" + subject
 				+ ", eventName=" + eventName + ", currentDate=" + currentDate
 				+ ", taskDate=" + taskDate + ", status=" + status
-				+ ", leadName=" + leadName + ", potentialName=" + potentialName
-				+ ", remark=" + remark + "]";
+				+ ", customerName=" + customerName + ", potentialName="
+				+ potentialName + ", remark=" + remark + "]";
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	
 	

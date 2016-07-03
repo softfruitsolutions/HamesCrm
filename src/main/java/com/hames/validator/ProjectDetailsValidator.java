@@ -19,6 +19,9 @@ public class ProjectDetailsValidator implements Validator {
 		if(projectDetails.getProjectName() == null || projectDetails.getProjectName().isEmpty()){
 			errors.rejectValue("projectName", "", "Project Name Required");
 		}
+		if(projectDetails.getAdvanceAmount() == null || projectDetails.getAdvanceAmount().isEmpty()){
+			errors.rejectValue("advanceAmount", "", "Advance amount should be payed");
+		}
 	}
 
 }

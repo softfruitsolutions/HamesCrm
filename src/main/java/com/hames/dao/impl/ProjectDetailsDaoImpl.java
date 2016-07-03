@@ -17,11 +17,18 @@ import com.hames.util.model.DatatableResponse;
 @Repository
 public class ProjectDetailsDaoImpl extends GenericDao implements ProjectDetailsDao{
 
+	/**
+	 * @author Raneef ibn ali nhelat
+	 */
+	
 	private static final String COLLECTION_NAME = "projectDetails";
 	
 	@Autowired
 	private HamesDataStore hamesDataStore;
 	
+	/**
+	 * to create a collection for the project details
+	 */
 	@PostConstruct
 	public void createCollection(){
 		if(!hamesDataStore.collectionExists(COLLECTION_NAME)){
@@ -29,6 +36,9 @@ public class ProjectDetailsDaoImpl extends GenericDao implements ProjectDetailsD
 		}
 	}
 	
+	/**
+	 * save function for the project details
+	 */
 	@Override
 	public void save(ProjectDetails projectDetails) {
 		if(!hamesDataStore.exists(projectDetails.getProjectId(), COLLECTION_NAME)){
@@ -42,6 +52,9 @@ public class ProjectDetailsDaoImpl extends GenericDao implements ProjectDetailsD
 		return ProjectDetails.class;
 	}
 
+	/**
+	 * Datatable function for getting table values
+	 */
 	@Override
 	public DatatableResponse buildDatatableResonse(DatatableRequest request) {
 		request.setClazz(getEntityClass());
@@ -49,11 +62,17 @@ public class ProjectDetailsDaoImpl extends GenericDao implements ProjectDetailsD
 		return hamesDataStore.getDatatablePagedResult(request);
 	}
 
+	/**
+	 * To find the project which have to edit by using project id
+	 */
 	@Override
 	public ProjectDetails findByProjectId(String projectId) {
 		return (ProjectDetails) hamesDataStore.findById(projectId, getEntityClass(), COLLECTION_NAME);
 	}
 
+	/**
+	 * to find the count of the project 
+	 */
 	@Override
 	public Long findProjectCount() {
 		return hamesDataStore.getCollection(COLLECTION_NAME).count();

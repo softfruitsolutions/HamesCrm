@@ -29,6 +29,14 @@ public class ProjectDetailsServiceImpl extends GenericService implements Project
 	}
 	
 	@Override
+	public Class<?> getEntityClass() {
+		return ProjectDetails.class;
+	}
+	
+	/**
+	 * Save function for the details of the project
+	 */
+	@Override
 	public void saveProjectDetails(ProjectDetails projectDetails) {
 		
 		try{
@@ -42,22 +50,25 @@ public class ProjectDetailsServiceImpl extends GenericService implements Project
 		logger.debug("Values saved Successfully");
 	}
 
-
-	@Override
-	public Class<?> getEntityClass() {
-		return ProjectDetails.class;
-	}
-
+	/**
+	 * function for taking the values from the database
+	 */
 	@Override
 	public DatatableResponse getDatatable(DatatableRequest request) {
 		return projectDetailsDao.buildDatatableResonse(request);
 	}
-
+	
+	/**
+	 * Function for editing the values by id
+	 */
 	@Override
 	public ProjectDetails getProjectId(String projectId) {
 		return projectDetailsDao.findByProjectId(projectId);
 	}
-
+	
+	/**
+	 * to get the project count
+	 */
 	@Override
 	public long getProjectCount() {
 		return projectDetailsDao.findProjectCount();

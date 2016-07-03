@@ -16,8 +16,8 @@ public class TaskValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Task task = (Task) target;
 		
-		if(task.getTaskOwner() == null || task.getTaskOwner().isEmpty()){
-			errors.rejectValue("taskOwner", "ER002", "Task Owner Name Required");
+		if(task.getEngineer() == null || task.getEngineer().isEmpty()){
+			errors.rejectValue("engineer", "ER002", "Engineer Name Required");
 		}
 		
 		if(task.getEventName() == null || task.getEventName().isEmpty()){

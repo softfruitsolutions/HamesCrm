@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Validator;
 
+import com.hames.bean.NewClient;
 import com.hames.bean.NewLead;
 import com.hames.dao.LeadDao;
 import com.hames.db.Sequence;
@@ -82,6 +83,11 @@ public class LeadServiceImpl extends GenericService implements LeadService {
 	@Override
 	public long getLeadCount() {
 		return leadDao.findLeadCount();
+	}
+
+	@Override
+	public NewClient getLeadForClient(String leadId) {
+		return leadDao.fndLdFrClntId(leadId);
 	}
 
 		

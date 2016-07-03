@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hames.bean.NewClient;
 import com.hames.bean.NewLead;
 import com.hames.dao.LeadDao;
 import com.hames.db.GenericDao;
@@ -74,6 +75,11 @@ public class LeadDaoImpl extends GenericDao implements LeadDao {
 	@Override
 	public Long findLeadCount() {
 		return hamesDataStore.getCollection(COLLECTION_NAME).count();
+	}
+
+	@Override
+	public NewClient fndLdFrClntId(String leadId) {
+		return (NewClient) hamesDataStore.findById(leadId, NewClient.class, COLLECTION_NAME);
 	}
 
 }

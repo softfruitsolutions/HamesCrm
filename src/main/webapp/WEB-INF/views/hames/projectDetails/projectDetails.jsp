@@ -70,11 +70,11 @@ function save(){
 							<div class="row">
 								<div class="col-md-8">
 									<div class="form-group">
-										<form:label path="potentialName" cssClass="control-label">Potential Name</form:label>
+										<form:label path="potentialName" cssClass="control-label">Customer Name</form:label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-google-wallet"></i></span>
 											<form:select path="potentialName" cssClass="form-control">
-												<form:options items="${potentialName }" itemLabel="potentialName" itemValue="potentialName"/>
+												<form:options items="${clientName }" itemLabel="firstName" itemValue="firstName"/>
 											</form:select>
 										</div>
 									</div>
@@ -86,7 +86,7 @@ function save(){
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-cog"></i></span>
 											<form:select path="engineer" class="form-control">
-												<form:options items="${staffs }" itemLabel="fullName" itemValue="staffId"/>
+												<form:options items="${engineer }" itemLabel="text"/>
 											</form:select>
 										</div>
 									</div>
@@ -130,7 +130,7 @@ function save(){
      							<div class="panel-heading">Payment Details</div>
    								<div class="panel-body">
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<form:label path="advanceAmount" cssClass="control-label">Level 1</form:label>
 											<div class="input-group">
@@ -139,37 +139,29 @@ function save(){
 											</div>
 										</div>
 									</div>	
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<form:label path="floorLevel" cssClass="control-label">Level 2</form:label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-inr"></i></span>
 											<form:input path="floorLevel" cssClass="form-control" placeholder="Floor Level"/>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<form:label path="mainConcrete" cssClass="control-label" >Level 3</form:label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-inr"></i></span>
 											<form:input path="mainConcrete" cssClass="form-control" placeholder="Main Concrete"/>
 										</div>
 									</div>
-							</div>		
-								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<form:label path="plastering" cssClass="control-label">Level 4</form:label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-inr"></i></span>
 											<form:input path="plastering" cssClass="form-control" placeholder="Plastering"/>
 										</div>
 									</div>
-									<div class="col-md-4">
-										<form:label path="interior" cssClass="control-label">Level 5</form:label>
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-inr"></i></span>
-											<form:input path="interior" cssClass="form-control" placeholder="Interior"/>
-										</div>
-									</div>
-								</div>
+							</div>		
+
 								</div>
 							</div>	
 							<hr />	

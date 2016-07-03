@@ -1,12 +1,13 @@
 package com.hames.service.impl;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Validator;
 
-import com.hames.bean.Staff;
 import com.hames.bean.Task;
 import com.hames.dao.TaskDao;
 import com.hames.db.HamesDataStore;
@@ -14,7 +15,6 @@ import com.hames.db.Sequence;
 import com.hames.db.SequenceDao;
 import com.hames.exception.ValidationException;
 import com.hames.service.GenericService;
-import com.hames.service.StaffService;
 import com.hames.service.TaskService;
 import com.hames.util.model.DatatableRequest;
 import com.hames.util.model.DatatableResponse;
@@ -25,8 +25,7 @@ public class TaskServiceImpl extends GenericService implements TaskService{
 
 	private static final Logger Logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 	
-	@Autowired
-	private StaffService staffService;
+	
 	@Autowired
 	public TaskDao taskdao;
 	@Autowired
@@ -66,15 +65,7 @@ public class TaskServiceImpl extends GenericService implements TaskService{
 
 	@Override
 	public DatatableResponse getDatatable(DatatableRequest request) {
-		DatatableResponse response = taskdao.buildDatatable(request);
-		for (Object obj : response.getAaData()) {
-			Task task = (Task) obj;
-			Staff staff = staffService.getStaffById(task.getTaskOwner());
-			if(staff != null){
-				task.setTaskOwnerText(staff.getFullName());
-			}
-		}
-		return response;
+		return taskdao.buildDatatable(request);
 	}
 
 
@@ -93,6 +84,11 @@ public class TaskServiceImpl extends GenericService implements TaskService{
 	public String getNextPotId() {
 		Long sequenceId = sequenceDao.findNextSequenceId(Sequence.TASK_POTENTIAL_SEQUENCE);
 		return "L"+sequenceId;
+	}
+
+	@Override
+	public long getTaskCount() {
+		return taskdao.findTaskCount();
 	}
 
 }

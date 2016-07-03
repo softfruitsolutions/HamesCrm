@@ -2,6 +2,7 @@ package com.hames.dao;
 
 import java.util.List;
 
+import com.hames.bean.NewClient;
 import com.hames.bean.NewLead;
 import com.hames.util.model.DatatableRequest;
 import com.hames.util.model.DatatableResponse;
@@ -33,6 +34,13 @@ public interface LeadDao {
 	 * Find a lead
 	 */
 	NewLead findByLeadId(String leadId);
+	
+	/**
+	 * For updating lead to client
+	 * @param leadId
+	 * @return
+	 */
+	NewClient fndLdFrClntId(String leadId);
 	
 	/**
 	 * Get Lead Count

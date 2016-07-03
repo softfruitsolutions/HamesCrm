@@ -4,6 +4,11 @@ import com.hames.bean.ProjectDetails;
 import com.hames.util.model.DatatableRequest;
 import com.hames.util.model.DatatableResponse;
 
+/**
+ * 
+ * @author raneef ibn ali nhelat
+ *
+ */
 public interface ProjectDetailsService {
 	
 	/**
@@ -24,5 +29,9 @@ public interface ProjectDetailsService {
 	 */
 	public ProjectDetails getProjectId(String projectId);
 	
+	/**
+	 * To get the count of total project
+	 * @return
+	 */
 	public long getProjectCount();
 }

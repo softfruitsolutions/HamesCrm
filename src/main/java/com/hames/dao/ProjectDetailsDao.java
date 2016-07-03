@@ -23,5 +23,9 @@ public interface ProjectDetailsDao {
 	 */
 	ProjectDetails findByProjectId(String projectId);
 	
+	/**
+	 * To find the count of the project
+	 * @return
+	 */
 	Long findProjectCount();
 }
